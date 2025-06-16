@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/app_theme.dart';
 import 'presentation/view/splash_screen.dart';
 
@@ -13,7 +14,7 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const NexoApp());
+  runApp(const ProviderScope(child: NexoApp(),));
 }
 
 class NexoApp extends StatelessWidget {

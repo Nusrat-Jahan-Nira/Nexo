@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../../core/nexo_colors.dart';
-import 'login_screen.dart';
+import '../../util/nexo_colors.dart';
+import '../../../feature/login/presentation/view/login_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const LoginScreen())
+          MaterialPageRoute(builder: (_) => LoginScreen())
       );
     });
   }

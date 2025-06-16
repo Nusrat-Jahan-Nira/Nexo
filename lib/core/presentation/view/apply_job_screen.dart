@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import '../../core/nexo_colors.dart';
+
+import '../../util/nexo_colors.dart';
 import '../custom_view/glass_container.dart';
 
 class ApplyJobScreen extends StatefulWidget {

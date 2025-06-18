@@ -26,8 +26,19 @@ class AuthRepositoryImpl implements IAuthRepository {
     try {
       //return await _authApi.signInWithEmailAndPassword(loginRequest);
       final result = await _authApi.signInWithEmailAndPassword(loginRequest);
+
+      final tempvalue =  UserCredentialDto(
+        uid: result.user?.uid,
+        email: result.user?.email,
+        phoneNumber: result.user?.phoneNumber,
+        emailVerified: result.user?.emailVerified,
+        photoURL: result.user?.photoURL,
+      );
+
+      print(tempvalue);
+
       print("Auth API result: $result"); // Print the result for debugging
-      return result;
+      return tempvalue;
     } on FirebaseAuthException catch (e) {
       throw ExceptionUtil.handleFirebaseException<UserCredentialDto>(e);
     }

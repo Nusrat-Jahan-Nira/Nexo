@@ -31,7 +31,7 @@ class AuthApi {
 //   }
 // }
 
-  Future<UserCredentialDto> signInWithEmailAndPassword(LoginRequest request) async {
+  Future<dynamic> signInWithEmailAndPassword(LoginRequest request) async {
     try {
       print("Login : ${request.email}");
       print("Login : ${request.password}");
@@ -41,17 +41,17 @@ class AuthApi {
         password: request.password,
       );
 
-      final tempvalue =  UserCredentialDto(
-        uid: credential.user?.uid,
-        email: credential.user?.email,
-        phoneNumber: credential.user?.phoneNumber,
-        emailVerified: credential.user?.emailVerified,
-        photoURL: credential.user?.photoURL,
-      );
+      // final tempvalue =  UserCredentialDto(
+      //   uid: credential.user?.uid,
+      //   email: credential.user?.email,
+      //   phoneNumber: credential.user?.phoneNumber,
+      //   emailVerified: credential.user?.emailVerified,
+      //   photoURL: credential.user?.photoURL,
+      // );
+      //
+      // print(tempvalue);
 
-      print(tempvalue);
-
-      return tempvalue;
+      return credential;
 
     } catch (e, stackTrace) {
       print("Login error: $e");

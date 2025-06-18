@@ -1,4 +1,4 @@
-- Nexo is a modern Flutter application designed to help users manage their career journey. The app integrates with Firebase and provides a seamless experience for job seekers, featuring:
+Nexo is a modern Flutter application designed to help users manage their career journey. The app integrates with Firebase and provides a seamless experience for job seekers, featuring:
 
 - **Job Listings:** Browse and search for job opportunities
 - **Applications Management:** Track your job applications

@@ -33,7 +33,7 @@ class NexoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'EraAI51 Nexo',
+      title: 'Nexo',
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.system,
       theme: AppTheme.lightTheme,

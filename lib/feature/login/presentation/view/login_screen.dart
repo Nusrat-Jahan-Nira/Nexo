@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../../core/util/nexo_colors.dart';
+import '../../domain/req_model/login_request.dart';
 import '../controller/auth_controller.dart';
 import '../../../../core/presentation/custom_view/glass_container.dart';
 import '../../../../core/presentation/view/home_screen.dart';
@@ -967,6 +968,9 @@ class LoginScreen extends ConsumerWidget {
       });
     }
 
+    _emailController.text = "abc@gmail.com";
+    _passwordController.text = "Abc@123456";
+
     return Scaffold(
       body: Stack(
         children: [
@@ -1359,10 +1363,8 @@ class LoginScreen extends ConsumerWidget {
   void _attemptLogin(WidgetRef ref) async {
     if (_formKey.currentState!.validate()) {
       final authController = ref.read(authControllerProvider.notifier);
-      await authController.login(
-        _emailController.text.trim(),
-        _passwordController.text,
-      );
+      final loginRequest = LoginRequest(email: _emailController.text.trim(), password:  _passwordController.text,);
+      await authController.login(loginRequest);
     }
   }
 

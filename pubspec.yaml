@@ -36,6 +36,11 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
   flutter_riverpod: ^2.6.1
+#  firebase_core: ^2.15.1
+#  //firebase_auth: ^4.7.3
+  firebase_core: ^2.25.5
+  firebase_auth: ^4.17.6
+  injectable: ^2.5.0
 
 dev_dependencies:
   flutter_test:

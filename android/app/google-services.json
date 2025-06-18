@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "104822628813",
+    "project_id": "nexo-a330d",
+    "storage_bucket": "nexo-a330d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:104822628813:android:fe198cc2aaf35390546484",
+        "android_client_info": {
+          "package_name": "com.example.nexo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB3qxjmf0Qqa0ylbaigl7VBIX260kTLklI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

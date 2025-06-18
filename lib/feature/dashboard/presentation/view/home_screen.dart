@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import '../../util/nexo_colors.dart';
-import '../custom_view/glass_container.dart';
-import 'applications_screen.dart';
-import 'cv_screen.dart';
-import 'job_list_screen.dart';
-import 'profile_screen.dart';
+import '../../../../core/util/nexo_colors.dart';
+import '../../../../core/presentation/custom_view/glass_container.dart';
+import '../../../../core/presentation/view/applications_screen.dart';
+import '../../../../core/presentation/view/cv_screen.dart';
+import '../../../../core/presentation/view/job_list_screen.dart';
+import '../../../../core/presentation/view/profile_screen.dart';
 
 
 class HomeScreen extends StatefulWidget {

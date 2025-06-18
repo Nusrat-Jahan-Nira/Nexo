@@ -3,7 +3,7 @@ import '../../../../core/util/nexo_colors.dart';
 import '../../domain/req_model/login_request.dart';
 import '../controller/auth_controller.dart';
 import '../../../../core/presentation/custom_view/glass_container.dart';
-import '../../../../core/presentation/view/home_screen.dart';
+import '../../../dashboard/presentation/view/home_screen.dart';
 import '../../../../core/presentation/view/registration_screen.dart';
 
 
@@ -453,7 +453,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../../core/presentation/custom_view/glass_container.dart';
-import '../../../../core/presentation/view/home_screen.dart';
+import '../../../dashboard/presentation/view/home_screen.dart';
 import '../../../../core/presentation/view/registration_screen.dart';
 
 //**********************version 2 with Riverpod state management**********************//

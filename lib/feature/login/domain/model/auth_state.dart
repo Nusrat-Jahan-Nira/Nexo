@@ -12,7 +12,7 @@ class AuthState {
     this.isLoading = false,
     this.isAuthenticated = false,
     this.errorMessage,
-    this.isPasswordVisible = false,
+    this.isPasswordVisible = true,
   });
 
   AuthState copyWith({

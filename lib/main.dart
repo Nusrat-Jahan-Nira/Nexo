@@ -4,19 +4,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/util/app_theme.dart';
 import 'core/presentation/view/splash_screen.dart';
-import 'package:get_it/get_it.dart';
+import 'firebase_options.dart';
 
-import 'feature/login/di/login_module.dart';
-
-final getIt = GetIt.instance;
-
-void setupDependencies() {
-  LoginModule.dependencies();
-}
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  setupDependencies();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
   // Set preferred orientations
   await SystemChrome.setPreferredOrientations([
@@ -24,11 +16,13 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  runApp(const ProviderScope(child: NexoApp(),));
+  runApp(const ProviderScope(
+    child: NexoApp(),
+  ));
 }
 
 class NexoApp extends StatelessWidget {
-  const NexoApp({Key? key}) : super(key: key);
+  const NexoApp({super.key});
 
   @override
   Widget build(BuildContext context) {

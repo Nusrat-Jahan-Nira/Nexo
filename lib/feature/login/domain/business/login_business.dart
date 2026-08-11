@@ -1,4 +1,5 @@
-import 'package:injectable/injectable.dart';
+
+import 'package:flutter/foundation.dart';
 
 import '../../data/data_source/dto/user_credential_dto.dart';
 import '../repository/auth_repository.dart';
@@ -13,9 +14,9 @@ class LoginBusiness {
   Future<UserCredentialDto> call(LoginRequest loginRequest) async {
     try {
       return await repository.login(loginRequest);
-    } catch (e, stackTrace) {
+    } catch (e) {
       // Log the error and stack trace
-      print('Login error: '
+      debugPrint('Login error: '
           '\$e\nStackTrace: \$stackTrace');
       // Rethrow or transform the exception
       throw Exception('Failed to login: \\${e.toString()}');

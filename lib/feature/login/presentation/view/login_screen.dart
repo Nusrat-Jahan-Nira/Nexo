@@ -6,7 +6,6 @@ import '../../../../core/presentation/custom_view/glass_container.dart';
 import '../../../dashboard/presentation/view/home_screen.dart';
 import '../../../../core/presentation/view/registration_screen.dart';
 
-
 // class LoginScreen extends StatefulWidget {
 //   const LoginScreen({Key? key}) : super(key: key);
 //
@@ -87,7 +86,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.3,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: NexoColors.primaryLight.withOpacity(0.3),
+//                 color: NexoColors.primaryLight.withValues(alpha: 0.3),
 //               ),
 //             ),
 //           ),
@@ -100,7 +99,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.4,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: NexoColors.accentLight.withOpacity(0.3),
+//                 color: NexoColors.accentLight.withValues(alpha: 0.3),
 //               ),
 //             ),
 //           ),
@@ -113,7 +112,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.1,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: Colors.amber.withOpacity(0.2),
+//                 color: Colors.amber.withValues(alpha: 0.2),
 //               ),
 //             ),
 //           ),
@@ -145,7 +144,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                               padding: const EdgeInsets.all(16),
 //                               decoration: BoxDecoration(
 //                                 shape: BoxShape.circle,
-//                                 color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+//                                 color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.8),
 //                               ),
 //                               child: Icon(
 //                                 Icons.work_outline,
@@ -195,8 +194,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                           boxShadow: [
 //                             BoxShadow(
 //                               color: isDark
-//                                   ? Colors.black.withOpacity(0.2)
-//                                   : Colors.grey.withOpacity(0.2),
+//                                   ? Colors.black.withValues(alpha: 0.2)
+//                                   : Colors.grey.withValues(alpha: 0.2),
 //                               blurRadius: 15,
 //                               offset: Offset(0, 10),
 //                             ),
@@ -217,8 +216,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     prefixIcon: Icon(Icons.email_outlined),
 //                                     hintText: 'Enter your email address',
 //                                     fillColor: isDark
-//                                         ? Colors.white.withOpacity(0.05)
-//                                         : Colors.black.withOpacity(0.03),
+//                                         ? Colors.white.withValues(alpha: 0.05)
+//                                         : Colors.black.withValues(alpha: 0.03),
 //                                     filled: true,
 //                                     border: OutlineInputBorder(
 //                                       borderRadius: BorderRadius.circular(12),
@@ -253,8 +252,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     prefixIcon: Icon(Icons.lock_outline),
 //                                     hintText: 'Enter your password',
 //                                     fillColor: isDark
-//                                         ? Colors.white.withOpacity(0.05)
-//                                         : Colors.black.withOpacity(0.03),
+//                                         ? Colors.white.withValues(alpha: 0.05)
+//                                         : Colors.black.withValues(alpha: 0.03),
 //                                     filled: true,
 //                                     border: OutlineInputBorder(
 //                                       borderRadius: BorderRadius.circular(12),
@@ -315,7 +314,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     ),
 //                                     boxShadow: [
 //                                       BoxShadow(
-//                                         color: NexoColors.primaryLight.withOpacity(0.4),
+//                                         color: NexoColors.primaryLight.withValues(alpha: 0.4),
 //                                         blurRadius: 12,
 //                                         offset: Offset(0, 4),
 //                                       ),
@@ -441,7 +440,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //       height: 56,
 //       width: 56,
 //       padding: EdgeInsets.zero,
-//       color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+//       color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.8),
 //       child: IconButton(
 //         icon: Icon(icon, color: color, size: 28),
 //         onPressed: () {},
@@ -450,11 +449,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //   }
 // }
 
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/presentation/custom_view/glass_container.dart';
-import '../../../dashboard/presentation/view/home_screen.dart';
-import '../../../../core/presentation/view/registration_screen.dart';
 
 //**********************version 2 with Riverpod state management**********************//
 
@@ -549,7 +544,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.3,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: NexoColors.primaryLight.withOpacity(0.3),
+//                 color: NexoColors.primaryLight.withValues(alpha: 0.3),
 //               ),
 //             ),
 //           ),
@@ -562,7 +557,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.4,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: NexoColors.accentLight.withOpacity(0.3),
+//                 color: NexoColors.accentLight.withValues(alpha: 0.3),
 //               ),
 //             ),
 //           ),
@@ -575,7 +570,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //               width: size.height * 0.1,
 //               decoration: BoxDecoration(
 //                 shape: BoxShape.circle,
-//                 color: Colors.amber.withOpacity(0.2),
+//                 color: Colors.amber.withValues(alpha: 0.2),
 //               ),
 //             ),
 //           ),
@@ -607,7 +602,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                               padding: const EdgeInsets.all(16),
 //                               decoration: BoxDecoration(
 //                                 shape: BoxShape.circle,
-//                                 color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+//                                 color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.8),
 //                               ),
 //                               child: Icon(
 //                                 Icons.work_outline,
@@ -681,8 +676,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                           boxShadow: [
 //                             BoxShadow(
 //                               color: isDark
-//                                   ? Colors.black.withOpacity(0.2)
-//                                   : Colors.grey.withOpacity(0.2),
+//                                   ? Colors.black.withValues(alpha: 0.2)
+//                                   : Colors.grey.withValues(alpha: 0.2),
 //                               blurRadius: 15,
 //                               offset: const Offset(0, 10),
 //                             ),
@@ -703,8 +698,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     prefixIcon: const Icon(Icons.email_outlined),
 //                                     hintText: 'Enter your email address',
 //                                     fillColor: isDark
-//                                         ? Colors.white.withOpacity(0.05)
-//                                         : Colors.black.withOpacity(0.03),
+//                                         ? Colors.white.withValues(alpha: 0.05)
+//                                         : Colors.black.withValues(alpha: 0.03),
 //                                     filled: true,
 //                                     border: OutlineInputBorder(
 //                                       borderRadius: BorderRadius.circular(12),
@@ -739,8 +734,8 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     prefixIcon: const Icon(Icons.lock_outline),
 //                                     hintText: 'Enter your password',
 //                                     fillColor: isDark
-//                                         ? Colors.white.withOpacity(0.05)
-//                                         : Colors.black.withOpacity(0.03),
+//                                         ? Colors.white.withValues(alpha: 0.05)
+//                                         : Colors.black.withValues(alpha: 0.03),
 //                                     filled: true,
 //                                     border: OutlineInputBorder(
 //                                       borderRadius: BorderRadius.circular(12),
@@ -801,7 +796,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //                                     ),
 //                                     boxShadow: [
 //                                       BoxShadow(
-//                                         color: NexoColors.primaryLight.withOpacity(0.4),
+//                                         color: NexoColors.primaryLight.withValues(alpha: 0.4),
 //                                         blurRadius: 12,
 //                                         offset: const Offset(0, 4),
 //                                       ),
@@ -936,7 +931,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 //       height: 56,
 //       width: 56,
 //       padding: EdgeInsets.zero,
-//       color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+//       color: isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white.withValues(alpha: 0.8),
 //       child: IconButton(
 //         icon: Icon(icon, color: color, size: 28),
 //         onPressed: () {},
@@ -946,7 +941,7 @@ import '../../../../core/presentation/view/registration_screen.dart';
 // }
 
 class LoginScreen extends ConsumerWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  LoginScreen({super.key});
 
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _emailController = TextEditingController();
@@ -963,13 +958,9 @@ class LoginScreen extends ConsumerWidget {
     if (authState.isAuthenticated) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const HomeScreen())
-        );
+            MaterialPageRoute(builder: (_) => const HomeScreen()));
       });
     }
-
-    _emailController.text = "abc@gmail.com";
-    _passwordController.text = "Abc@123456";
 
     return Scaffold(
       body: Stack(
@@ -981,8 +972,8 @@ class LoginScreen extends ConsumerWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: isDark
-                    ? [Color(0xFF2B2B3B), Color(0xFF1A1A2E)]
-                    : [Color(0xFFEAF0FF), Color(0xFFDFE9F9)],
+                    ? [const Color(0xFF2B2B3B), const Color(0xFF1A1A2E)]
+                    : [const Color(0xFFEAF0FF), const Color(0xFFDFE9F9)],
               ),
             ),
           ),
@@ -996,7 +987,7 @@ class LoginScreen extends ConsumerWidget {
               width: size.height * 0.3,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.primaryLight.withOpacity(0.3),
+                color: NexoColors.primaryLight.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -1009,7 +1000,7 @@ class LoginScreen extends ConsumerWidget {
               width: size.height * 0.4,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.accentLight.withOpacity(0.3),
+                color: NexoColors.accentLight.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -1022,7 +1013,7 @@ class LoginScreen extends ConsumerWidget {
               width: size.height * 0.1,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: Colors.amber.withOpacity(0.2),
+                color: Colors.amber.withValues(alpha: 0.2),
               ),
             ),
           ),
@@ -1053,16 +1044,18 @@ class LoginScreen extends ConsumerWidget {
                               padding: const EdgeInsets.all(16),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+                                color: isDark
+                                    ? Colors.white.withValues(alpha: 0.1)
+                                    : Colors.white.withValues(alpha: 0.8),
                               ),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.work_outline,
                                 size: 50,
                                 color: NexoColors.primaryLight,
                               ),
                             ),
                             const SizedBox(height: 24),
-                            Text(
+                            const Text(
                               'Welcome to Nexo',
                               style: TextStyle(
                                 fontSize: 24,
@@ -1088,7 +1081,8 @@ class LoginScreen extends ConsumerWidget {
                     // Error message if any
                     if (authState.errorMessage != null)
                       Container(
-                        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 16),
                         margin: const EdgeInsets.only(bottom: 16),
                         decoration: BoxDecoration(
                           color: Colors.red.shade50,
@@ -1097,7 +1091,8 @@ class LoginScreen extends ConsumerWidget {
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.error_outline, color: Colors.red.shade700),
+                            Icon(Icons.error_outline,
+                                color: Colors.red.shade700),
                             const SizedBox(width: 8),
                             Expanded(
                               child: Text(
@@ -1117,12 +1112,14 @@ class LoginScreen extends ConsumerWidget {
                         opacity: 1.0,
                         duration: const Duration(milliseconds: 1000),
                         child: GlassContainer(
-                          color: isDark ? NexoColors.glassDark : NexoColors.glassLight,
+                          color: isDark
+                              ? NexoColors.glassDark
+                              : NexoColors.glassLight,
                           boxShadow: [
                             BoxShadow(
                               color: isDark
-                                  ? Colors.black.withOpacity(0.2)
-                                  : Colors.grey.withOpacity(0.2),
+                                  ? Colors.black.withValues(alpha: 0.2)
+                                  : Colors.grey.withValues(alpha: 0.2),
                               blurRadius: 15,
                               offset: const Offset(0, 10),
                             ),
@@ -1136,25 +1133,31 @@ class LoginScreen extends ConsumerWidget {
                                   controller: _emailController,
                                   keyboardType: TextInputType.emailAddress,
                                   style: TextStyle(
-                                    color: isDark ? Colors.white : Colors.black87,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                   decoration: InputDecoration(
                                     labelText: 'Email',
-                                    prefixIcon: const Icon(Icons.email_outlined),
+                                    prefixIcon:
+                                        const Icon(Icons.email_outlined),
                                     hintText: 'Enter your email address',
                                     fillColor: isDark
-                                        ? Colors.white.withOpacity(0.05)
-                                        : Colors.black.withOpacity(0.03),
+                                        ? Colors.white.withValues(alpha: 0.05)
+                                        : Colors.black.withValues(alpha: 0.03),
                                     filled: true,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide.none,
                                     ),
                                     labelStyle: TextStyle(
-                                      color: isDark ? Colors.white70 : Colors.black54,
+                                      color: isDark
+                                          ? Colors.white70
+                                          : Colors.black54,
                                     ),
                                     hintStyle: TextStyle(
-                                      color: isDark ? Colors.white30 : Colors.black38,
+                                      color: isDark
+                                          ? Colors.white30
+                                          : Colors.black38,
                                     ),
                                   ),
                                   validator: (value) {
@@ -1172,32 +1175,43 @@ class LoginScreen extends ConsumerWidget {
                                   controller: _passwordController,
                                   obscureText: authState.isPasswordVisible,
                                   style: TextStyle(
-                                    color: isDark ? Colors.white : Colors.black87,
+                                    color:
+                                        isDark ? Colors.white : Colors.black87,
                                   ),
                                   decoration: InputDecoration(
                                     labelText: 'Password',
                                     prefixIcon: const Icon(Icons.lock_outline),
                                     hintText: 'Enter your password',
                                     fillColor: isDark
-                                        ? Colors.white.withOpacity(0.05)
-                                        : Colors.black.withOpacity(0.03),
+                                        ? Colors.white.withValues(alpha: 0.05)
+                                        : Colors.black.withValues(alpha: 0.03),
                                     filled: true,
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(12),
                                       borderSide: BorderSide.none,
                                     ),
                                     labelStyle: TextStyle(
-                                      color: isDark ? Colors.white70 : Colors.black54,
+                                      color: isDark
+                                          ? Colors.white70
+                                          : Colors.black54,
                                     ),
                                     hintStyle: TextStyle(
-                                      color: isDark ? Colors.white30 : Colors.black38,
+                                      color: isDark
+                                          ? Colors.white30
+                                          : Colors.black38,
                                     ),
                                     suffixIcon: IconButton(
                                       icon: Icon(
-                                        authState.isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                                        color: isDark ? Colors.white54 : Colors.black45,
+                                        authState.isPasswordVisible
+                                            ? Icons.visibility_off
+                                            : Icons.visibility,
+                                        color: isDark
+                                            ? Colors.white54
+                                            : Colors.black45,
                                       ),
-                                      onPressed: () => ref.read(authControllerProvider.notifier).togglePasswordVisibility(),
+                                      onPressed: () => ref
+                                          .read(authControllerProvider.notifier)
+                                          .togglePasswordVisibility(),
                                     ),
                                   ),
                                   validator: (value) {
@@ -1211,8 +1225,9 @@ class LoginScreen extends ConsumerWidget {
                                 Align(
                                   alignment: Alignment.centerRight,
                                   child: TextButton(
-                                    onPressed: () {},
-                                    child: Text(
+                                    onPressed: () =>
+                                        _showForgotPasswordDialog(context, ref),
+                                    child: const Text(
                                       'Forgot Password?',
                                       style: TextStyle(
                                         color: NexoColors.primaryLight,
@@ -1230,21 +1245,24 @@ class LoginScreen extends ConsumerWidget {
                                   height: 56,
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(16),
-                                    gradient: LinearGradient(
+                                    gradient: const LinearGradient(
                                       colors: NexoColors.primaryGradient,
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: NexoColors.primaryLight.withOpacity(0.4),
+                                        color: NexoColors.primaryLight
+                                            .withValues(alpha: 0.4),
                                         blurRadius: 12,
                                         offset: const Offset(0, 4),
                                       ),
                                     ],
                                   ),
                                   child: ElevatedButton(
-                                    onPressed: authState.isLoading ? null : () => _attemptLogin(ref),
+                                    onPressed: authState.isLoading
+                                        ? null
+                                        : () => _attemptLogin(ref),
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent,
@@ -1291,52 +1309,72 @@ class LoginScreen extends ConsumerWidget {
                           children: [
                             Row(
                               children: [
-                                Expanded(child: Divider(color: isDark ? Colors.white30 : Colors.black26)),
+                                Expanded(
+                                    child: Divider(
+                                        color: isDark
+                                            ? Colors.white30
+                                            : Colors.black26)),
                                 Padding(
-                                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 16),
                                   child: Text(
                                     'Or continue with',
                                     style: TextStyle(
-                                      color: isDark ? Colors.white54 : Colors.black45,
+                                      color: isDark
+                                          ? Colors.white54
+                                          : Colors.black45,
                                     ),
                                   ),
                                 ),
-                                Expanded(child: Divider(color: isDark ? Colors.white30 : Colors.black26)),
+                                Expanded(
+                                    child: Divider(
+                                        color: isDark
+                                            ? Colors.white30
+                                            : Colors.black26)),
                               ],
                             ),
-
                             const SizedBox(height: 24),
-
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                _socialLoginButton(icon: Icons.g_mobiledata, color: const Color(0xFFDB4437), context: context),
+                                _socialLoginButton(
+                                    icon: Icons.g_mobiledata,
+                                    color: const Color(0xFFDB4437),
+                                    context: context),
                                 const SizedBox(width: 24),
-                                _socialLoginButton(icon: Icons.facebook, color: const Color(0xFF4267B2), context: context),
+                                _socialLoginButton(
+                                    icon: Icons.facebook,
+                                    color: const Color(0xFF4267B2),
+                                    context: context),
                                 const SizedBox(width: 24),
-                                _socialLoginButton(icon: Icons.apple, color: isDark ? Colors.white : Colors.black, context: context),
+                                _socialLoginButton(
+                                    icon: Icons.apple,
+                                    color: isDark ? Colors.white : Colors.black,
+                                    context: context),
                               ],
                             ),
-
                             const SizedBox(height: 32),
-
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
                                   'Don\'t have an account? ',
                                   style: TextStyle(
-                                    color: isDark ? Colors.white70 : Colors.black54,
+                                    color: isDark
+                                        ? Colors.white70
+                                        : Colors.black54,
                                   ),
                                 ),
                                 GestureDetector(
                                   onTap: () {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (_) => RegistrationScreen()),
+                                      MaterialPageRoute(
+                                          builder: (_) =>
+                                              const RegistrationScreen()),
                                     );
                                   },
-                                  child: Text(
+                                  child: const Text(
                                     'Sign Up',
                                     style: TextStyle(
                                       color: NexoColors.primaryLight,
@@ -1363,18 +1401,74 @@ class LoginScreen extends ConsumerWidget {
   void _attemptLogin(WidgetRef ref) async {
     if (_formKey.currentState!.validate()) {
       final authController = ref.read(authControllerProvider.notifier);
-      final loginRequest = LoginRequest(email: _emailController.text.trim(), password:  _passwordController.text,);
+      final loginRequest = LoginRequest(
+        email: _emailController.text.trim(),
+        password: _passwordController.text,
+      );
       await authController.login(loginRequest);
     }
   }
 
-  Widget _socialLoginButton({required IconData icon, required Color color, required BuildContext context}) {
+  void _showForgotPasswordDialog(BuildContext context, WidgetRef ref) {
+    final emailController =
+        TextEditingController(text: _emailController.text.trim());
+    showDialog(
+      context: context,
+      builder: (dialogContext) {
+        return AlertDialog(
+          title: const Text('Reset Password'),
+          content: TextField(
+            controller: emailController,
+            keyboardType: TextInputType.emailAddress,
+            decoration: const InputDecoration(
+              labelText: 'Email',
+              hintText: 'Enter your registered email',
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.of(dialogContext).pop(),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () async {
+                final email = emailController.text.trim();
+                Navigator.of(dialogContext).pop();
+                if (email.isEmpty) return;
+                final authController =
+                    ref.read(authControllerProvider.notifier);
+                final success = await authController.sendPasswordReset(email);
+                if (!context.mounted) return;
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text(
+                      success
+                          ? 'Password reset email sent. Check your inbox.'
+                          : 'Failed to send password reset email. Please try again.',
+                    ),
+                  ),
+                );
+              },
+              child: const Text('Send'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  Widget _socialLoginButton(
+      {required IconData icon,
+      required Color color,
+      required BuildContext context}) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
     return GlassContainer(
       height: 56,
       width: 56,
       padding: EdgeInsets.zero,
-      color: isDark ? Colors.white.withOpacity(0.1) : Colors.white.withOpacity(0.8),
+      color: isDark
+          ? Colors.white.withValues(alpha: 0.1)
+          : Colors.white.withValues(alpha: 0.8),
       child: IconButton(
         icon: Icon(icon, color: color, size: 28),
         onPressed: () {},

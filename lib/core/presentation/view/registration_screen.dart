@@ -1,20 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../util/nexo_colors.dart';
 import '../custom_view/glass_container.dart';
+import 'package:nexo/feature/dashboard/presentation/view/home_screen.dart';
+import 'package:nexo/feature/login/domain/req_model/login_request.dart';
+import 'package:nexo/feature/login/presentation/controller/auth_controller.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
+class RegistrationScreen extends ConsumerStatefulWidget {
+  const RegistrationScreen({super.key});
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
+  ConsumerState<RegistrationScreen> createState() => RegistrationScreenState();
 }
 
-class _RegistrationScreenState extends State<RegistrationScreen> with SingleTickerProviderStateMixin {
+class RegistrationScreenState extends ConsumerState<RegistrationScreen>
+    with SingleTickerProviderStateMixin {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController _nameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final TextEditingController _confirmPasswordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   bool _obscurePassword = true;
   bool _obscureConfirmPassword = true;
   int _currentStep = 0;
@@ -32,6 +38,21 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final isDark = Theme.of(context).brightness == Brightness.dark;
+    final authState = ref.watch(authControllerProvider);
+
+    if (authState.isAuthenticated) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context)
+            .pushReplacement(MaterialPageRoute(builder: (_) => const HomeScreen()));
+      });
+    } else if (authState.errorMessage != null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(authState.errorMessage!)),
+        );
+      });
+    }
 
     return Scaffold(
       body: Stack(
@@ -43,8 +64,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft,
                 colors: isDark
-                    ? [Color(0xFF2B2B3B), Color(0xFF1A1A2E)]
-                    : [Color(0xFFE4EBFF), Color(0xFFCFDDFB)],
+                    ? [const Color(0xFF2B2B3B), const Color(0xFF1A1A2E)]
+                    : [const Color(0xFFE4EBFF), const Color(0xFFCFDDFB)],
               ),
             ),
           ),
@@ -58,7 +79,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
               width: size.height * 0.3,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.accentLight.withOpacity(0.3),
+                color: NexoColors.accentLight.withValues(alpha: 0.3),
               ),
             ),
           ),
@@ -71,7 +92,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
               width: size.height * 0.25,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.primaryLight.withOpacity(0.25),
+                color: NexoColors.primaryLight.withValues(alpha: 0.25),
               ),
             ),
           ),
@@ -92,16 +113,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                       borderRadius: 12,
                       padding: EdgeInsets.zero,
                       child: IconButton(
-                        icon: Icon(Icons.arrow_back_ios_new),
+                        icon: const Icon(Icons.arrow_back_ios_new),
                         color: isDark ? Colors.white : Colors.black87,
                         onPressed: () => Navigator.pop(context),
                       ),
                     ),
 
-                    SizedBox(height: 32),
+                    const SizedBox(height: 32),
 
                     // Title
-                    Text(
+                    const Text(
                       'Create Account',
                       style: TextStyle(
                         fontSize: 32,
@@ -109,7 +130,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                       ),
                     ),
 
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
 
                     Text(
                       'Join Nexo to find your dream job',
@@ -119,18 +140,19 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                       ),
                     ),
 
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
 
                     // Registration form with glass effect
                     GlassContainer(
-                      color: isDark ? NexoColors.glassDark : NexoColors.glassLight,
+                      color:
+                          isDark ? NexoColors.glassDark : NexoColors.glassLight,
                       boxShadow: [
                         BoxShadow(
                           color: isDark
-                              ? Colors.black.withOpacity(0.2)
-                              : Colors.grey.withOpacity(0.2),
+                              ? Colors.black.withValues(alpha: 0.2)
+                              : Colors.grey.withValues(alpha: 0.2),
                           blurRadius: 15,
-                          offset: Offset(0, 10),
+                          offset: const Offset(0, 10),
                         ),
                       ],
                       child: Column(
@@ -138,15 +160,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                           // Registration progress indicator
                           Row(
                             children: [
-                              _buildProgressIndicator(1, _currentStep >= 0, 'Account'),
+                              _buildProgressIndicator(
+                                  1, _currentStep >= 0, 'Account'),
                               _buildProgressLine(_currentStep >= 1),
-                              _buildProgressIndicator(2, _currentStep >= 1, 'Profile'),
+                              _buildProgressIndicator(
+                                  2, _currentStep >= 1, 'Profile'),
                               _buildProgressLine(_currentStep >= 2),
-                              _buildProgressIndicator(3, _currentStep >= 2, 'Skills'),
+                              _buildProgressIndicator(
+                                  3, _currentStep >= 2, 'Skills'),
                             ],
                           ),
 
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
                           // Form content based on current step
                           if (_currentStep == 0)
@@ -156,7 +181,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                           else
                             _buildSkillsForm(isDark),
 
-                          SizedBox(height: 30),
+                          const SizedBox(height: 30),
 
                           // Navigation buttons
                           Row(
@@ -170,13 +195,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                                       });
                                     },
                                     style: OutlinedButton.styleFrom(
-                                      side: BorderSide(color: NexoColors.primaryLight),
-                                      padding: EdgeInsets.symmetric(vertical: 16),
+                                      side: const BorderSide(
+                                          color: NexoColors.primaryLight),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       'Previous',
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -184,48 +211,65 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                                     ),
                                   ),
                                 ),
-
-                              if (_currentStep > 0)
-                                SizedBox(width: 16),
-
+                              if (_currentStep > 0) const SizedBox(width: 16),
                               Expanded(
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(12),
-                                    gradient: LinearGradient(
+                                    gradient: const LinearGradient(
                                       colors: NexoColors.primaryGradient,
                                       begin: Alignment.centerLeft,
                                       end: Alignment.centerRight,
                                     ),
                                     boxShadow: [
                                       BoxShadow(
-                                        color: NexoColors.primaryLight.withOpacity(0.4),
+                                        color: NexoColors.primaryLight
+                                            .withValues(alpha: 0.4),
                                         blurRadius: 12,
-                                        offset: Offset(0, 4),
+                                        offset: const Offset(0, 4),
                                       ),
                                     ],
                                   ),
                                   child: ElevatedButton(
-                                    onPressed: () {
-                                      if (_currentStep < 2) {
-                                        setState(() {
-                                          _currentStep++;
-                                        });
-                                      } else {
-                                        // Submit registration
-                                      }
-                                    },
+                                    onPressed: authState.isLoading
+                                        ? null
+                                        : () {
+                                            if (_currentStep < 2) {
+                                              setState(() {
+                                                _currentStep++;
+                                              });
+                                            } else {
+                                              if (_passwordController.text !=
+                                                  _confirmPasswordController.text) {
+                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                  const SnackBar(
+                                                      content: Text('Passwords do not match')),
+                                                );
+                                                return;
+                                              }
+                                              ref.read(authControllerProvider.notifier).register(
+                                                    LoginRequest(
+                                                      email: _emailController.text.trim(),
+                                                      password: _passwordController.text,
+                                                    ),
+                                                    displayName: _nameController.text.trim(),
+                                                  );
+                                            }
+                                          },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.transparent,
                                       shadowColor: Colors.transparent,
-                                      padding: EdgeInsets.symmetric(vertical: 16),
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 16),
                                       shape: RoundedRectangleBorder(
                                         borderRadius: BorderRadius.circular(12),
                                       ),
                                     ),
                                     child: Text(
-                                      _currentStep < 2 ? 'Next' : 'Create Account',
-                                      style: TextStyle(
+                                      authState.isLoading
+                                          ? 'Creating...'
+                                          : (_currentStep < 2 ? 'Next' : 'Create Account'),
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                         color: Colors.white,
@@ -240,7 +284,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                       ),
                     ),
 
-                    SizedBox(height: 32),
+                    const SizedBox(height: 32),
 
                     // Sign in link
                     Row(
@@ -254,7 +298,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                         ),
                         GestureDetector(
                           onTap: () => Navigator.pop(context),
-                          child: Text(
+                          child: const Text(
                             'Sign In',
                             style: TextStyle(
                               color: NexoColors.primaryLight,
@@ -283,14 +327,18 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
             width: 36,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isActive ? NexoColors.primaryLight : Colors.grey.withOpacity(0.3),
-              boxShadow: isActive ? [
-                BoxShadow(
-                  color: NexoColors.primaryLight.withOpacity(0.4),
-                  blurRadius: 8,
-                  offset: Offset(0, 4),
-                ),
-              ] : null,
+              color: isActive
+                  ? NexoColors.primaryLight
+                  : Colors.grey.withValues(alpha: 0.3),
+              boxShadow: isActive
+                  ? [
+                      BoxShadow(
+                        color: NexoColors.primaryLight.withValues(alpha: 0.4),
+                        blurRadius: 8,
+                        offset: const Offset(0, 4),
+                      ),
+                    ]
+                  : null,
             ),
             child: Center(
               child: Text(
@@ -302,7 +350,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
               ),
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Text(
             label,
             style: TextStyle(
@@ -320,7 +368,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
     return Container(
       height: 2,
       width: 30,
-      color: isActive ? NexoColors.primaryLight : Colors.grey.withOpacity(0.3),
+      color: isActive ? NexoColors.primaryLight : Colors.grey.withValues(alpha: 0.3),
     );
   }
 
@@ -330,14 +378,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Account Information',
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.bold,
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
 
           // Email field
           TextFormField(
@@ -351,7 +399,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Password field
           TextFormField(
@@ -376,7 +424,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
             ),
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Confirm password field
           TextFormField(
@@ -389,7 +437,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
               isDark: isDark,
               suffixIcon: IconButton(
                 icon: Icon(
-                  _obscureConfirmPassword ? Icons.visibility_off : Icons.visibility,
+                  _obscureConfirmPassword
+                      ? Icons.visibility_off
+                      : Icons.visibility,
                   color: isDark ? Colors.white54 : Colors.black45,
                 ),
                 onPressed: () {
@@ -409,14 +459,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Personal Information',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
 
         // Full Name field
         TextFormField(
@@ -429,7 +479,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
           ),
         ),
 
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
 
         // Phone number field
         TextFormField(
@@ -442,7 +492,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
           ),
         ),
 
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
 
         // Location field
         TextFormField(
@@ -454,7 +504,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
           ),
         ),
 
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
 
         // Professional Title
         TextFormField(
@@ -473,14 +523,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        const Text(
           'Skills & Experience',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
           ),
         ),
-        SizedBox(height: 24),
+        const SizedBox(height: 24),
 
         // Skills input
         TextFormField(
@@ -492,10 +542,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
           ),
         ),
 
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
 
         // Experience level
-        Text(
+        const Text(
           'Experience Level',
           style: TextStyle(
             fontSize: 16,
@@ -503,42 +553,41 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
           ),
         ),
 
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
 
         // Experience level options
         Wrap(
           spacing: 10,
           runSpacing: 10,
-          children: [
-            'Entry Level',
-            'Junior',
-            'Mid-Level',
-            'Senior',
-            'Expert'
-          ].map((level) => _buildSelectionChip(level, level == 'Mid-Level', isDark)).toList(),
+          children: ['Entry Level', 'Junior', 'Mid-Level', 'Senior', 'Expert']
+              .map((level) =>
+                  _buildSelectionChip(level, level == 'Mid-Level', isDark))
+              .toList(),
         ),
 
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
 
         // Resume upload
         GlassContainer(
-          color: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.03),
-          padding: EdgeInsets.all(20),
+          color: isDark
+              ? Colors.white.withValues(alpha: 0.05)
+              : Colors.black.withValues(alpha: 0.03),
+          padding: const EdgeInsets.all(20),
           child: Column(
             children: [
-              Icon(
+              const Icon(
                 Icons.cloud_upload_outlined,
                 size: 40,
                 color: NexoColors.primaryLight,
               ),
-              SizedBox(height: 12),
-              Text(
+              const SizedBox(height: 12),
+              const Text(
                 'Upload your resume/CV',
                 style: TextStyle(
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 'PDF, DOCX or RTF (Max 5MB)',
                 style: TextStyle(
@@ -546,16 +595,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
                   color: isDark ? Colors.white54 : Colors.black45,
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               OutlinedButton(
                 onPressed: () {},
                 style: OutlinedButton.styleFrom(
-                  side: BorderSide(color: NexoColors.primaryLight),
+                  side: const BorderSide(color: NexoColors.primaryLight),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-                child: Text('Choose File'),
+                child: const Text('Choose File'),
               ),
             ],
           ),
@@ -571,10 +620,14 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
       onSelected: (selected) {
         // Handle selection
       },
-      backgroundColor: isDark ? Colors.white.withOpacity(0.05) : Colors.black.withOpacity(0.05),
-      selectedColor: NexoColors.primaryLight.withOpacity(0.2),
+      backgroundColor: isDark
+          ? Colors.white.withValues(alpha: 0.05)
+          : Colors.black.withValues(alpha: 0.05),
+      selectedColor: NexoColors.primaryLight.withValues(alpha: 0.2),
       labelStyle: TextStyle(
-        color: isSelected ? NexoColors.primaryLight : (isDark ? Colors.white70 : Colors.black54),
+        color: isSelected
+            ? NexoColors.primaryLight
+            : (isDark ? Colors.white70 : Colors.black54),
         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
       ),
     );
@@ -596,8 +649,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> with SingleTick
       ),
       suffixIcon: suffixIcon,
       fillColor: isDark
-          ? Colors.white.withOpacity(0.05)
-          : Colors.black.withOpacity(0.03),
+          ? Colors.white.withValues(alpha: 0.05)
+          : Colors.black.withValues(alpha: 0.03),
       filled: true,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),

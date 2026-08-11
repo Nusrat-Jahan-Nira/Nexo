@@ -3,28 +3,25 @@ import '../../../../core/util/nexo_colors.dart';
 import '../../../../core/presentation/custom_view/glass_container.dart';
 import '../../../../core/presentation/view/applications_screen.dart';
 import '../../../../core/presentation/view/cv_screen.dart';
-import '../../../../core/presentation/view/job_list_screen.dart';
+import 'package:nexo/feature/job/presentation/view/job_list_screen.dart';
 import '../../../../core/presentation/view/profile_screen.dart';
 
-
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
   final List<Widget> _screens = [
-    JobListScreen(),
-    ApplicationsScreen(),
-    CVScreen(),
-    ProfileScreen(),
+    const JobListScreen(),
+    const ApplicationsScreen(),
+    const CVScreen(),
+    const ProfileScreen(),
   ];
-
-  final List<String> _titles = ['Jobs', 'Applications', 'CV Manager', 'Profile'];
 
   @override
   Widget build(BuildContext context) {
@@ -36,18 +33,20 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: Colors.black.withValues(alpha: 0.1),
               blurRadius: 20,
-              offset: Offset(0, -5),
+              offset: const Offset(0, -5),
             ),
           ],
         ),
         child: GlassContainer(
           margin: EdgeInsets.zero,
           borderRadius: 24.0,
-          color: isDark ? Colors.black.withOpacity(0.4) : Colors.white.withOpacity(0.8),
+          color: isDark
+              ? Colors.black.withValues(alpha: 0.4)
+              : Colors.white.withValues(alpha: 0.8),
           blur: 15,
-          padding: EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 8),
           child: BottomNavigationBar(
             currentIndex: _currentIndex,
             onTap: (index) {
@@ -60,12 +59,15 @@ class _HomeScreenState extends State<HomeScreen> {
             type: BottomNavigationBarType.fixed,
             selectedItemColor: NexoColors.primaryLight,
             unselectedItemColor: isDark ? Colors.white60 : Colors.black54,
-            selectedLabelStyle: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
-            unselectedLabelStyle: TextStyle(fontSize: 10),
+            selectedLabelStyle:
+                const TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
+            unselectedLabelStyle: const TextStyle(fontSize: 10),
             items: [
               _buildNavItem(Icons.work_outline, Icons.work, 'Jobs'),
-              _buildNavItem(Icons.assignment_outlined, Icons.assignment, 'Applied'),
-              _buildNavItem(Icons.description_outlined, Icons.description, 'CV'),
+              _buildNavItem(
+                  Icons.assignment_outlined, Icons.assignment, 'Applied'),
+              _buildNavItem(
+                  Icons.description_outlined, Icons.description, 'CV'),
               _buildNavItem(Icons.person_outline, Icons.person, 'Profile'),
             ],
           ),
@@ -74,13 +76,14 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  BottomNavigationBarItem _buildNavItem(IconData icon, IconData activeIcon, String label) {
+  BottomNavigationBarItem _buildNavItem(
+      IconData icon, IconData activeIcon, String label) {
     return BottomNavigationBarItem(
       icon: Icon(icon),
       activeIcon: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
-          color: NexoColors.primaryLight.withOpacity(0.1),
+          color: NexoColors.primaryLight.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Icon(activeIcon),

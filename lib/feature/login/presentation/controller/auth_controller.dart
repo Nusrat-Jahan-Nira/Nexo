@@ -1,6 +1,6 @@
 // lib/presentation/controllers/auth_controller.dart
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 
 // class AuthController extends StateNotifier<AuthState> {
 //   AuthController() : super(const AuthState());
@@ -68,18 +68,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 //   return AuthController();
 // });
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nexo/feature/login/domain/req_model/login_request.dart';
 import 'package:nexo/feature/login/domain/usecase/login_usecase.dart';
-import 'package:nexo/main.dart';
+import 'package:nexo/feature/login/di/login_providers.dart';
 
 import '../../domain/model/auth_state.dart';
-import 'package:get_it/get_it.dart';
 
 class AuthController extends Notifier<AuthState> {
-
-  //late final LoginUsecase _loginUseCase;
-  final _loginUseCase = getIt<LoginUsecase>();
+  LoginUsecase get _loginUseCase => ref.read(loginUsecaseProvider);
 
   @override
   AuthState build() => const AuthState();
@@ -89,32 +85,17 @@ class AuthController extends Notifier<AuthState> {
 
     try {
       validateCredentials(loginRequest);
-      // Simulate network delay for login attempt & network delay
-      await Future.delayed(const Duration(seconds: 2));
-
-     // state = state.copyWith(isAuthenticated: true, isLoading: false);
-
 
       // Call login use case
       final userCredential = await _loginUseCase.loginBusiness(loginRequest);
 
-
       // Check if authentication was successful
-      if (userCredential != null) {
-        // Authentication succeeded
-        state = state.copyWith(
-          isAuthenticated: true,
-          isLoading: false,
-        );
-      } else {
-        // Authentication failed
-        state = state.copyWith(
-          isLoading: false,
-          errorMessage: "Authentication failed",
-          isAuthenticated: false,
-        );
-      }
-
+      // Authentication succeeded
+      state = state.copyWith(
+        isAuthenticated: true,
+        isLoading: false,
+        isEmailVerified: userCredential.emailVerified ?? false,
+      );
     } catch (e) {
       state = state.copyWith(
         isLoading: false,
@@ -122,7 +103,42 @@ class AuthController extends Notifier<AuthState> {
         isAuthenticated: false,
       );
 
-      print("AuthController Error: $e");
+      if (kDebugMode) {
+        debugPrint("AuthController Error: $e");
+      }
+    }
+  }
+
+  Future<void> register(LoginRequest loginRequest, {String? displayName}) async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+
+    try {
+      validateCredentials(loginRequest);
+
+      final userCredential = await _loginUseCase.registerBusiness(
+        loginRequest,
+        displayName: displayName,
+      );
+
+      if (userCredential.emailVerified != true) {
+        await _loginUseCase.emailVerificationBusiness();
+      }
+
+      state = state.copyWith(
+        isAuthenticated: true,
+        isLoading: false,
+        isEmailVerified: userCredential.emailVerified ?? false,
+      );
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString(),
+        isAuthenticated: false,
+      );
+
+      if (kDebugMode) {
+        debugPrint("AuthController Error: $e");
+      }
     }
   }
 
@@ -142,9 +158,11 @@ class AuthController extends Notifier<AuthState> {
 
     bool hasUppercase = loginRequest.password.contains(RegExp(r'[A-Z]'));
     bool hasDigit = loginRequest.password.contains(RegExp(r'[0-9]'));
-    bool hasSpecialChar = loginRequest.password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
+    bool hasSpecialChar =
+        loginRequest.password.contains(RegExp(r'[!@#$%^&*(),.?":{}|<>]'));
     if (!hasUppercase || !hasDigit || !hasSpecialChar) {
-      throw Exception('Password must contain at least one uppercase letter, one number, and one special character');
+      throw Exception(
+          'Password must contain at least one uppercase letter, one number, and one special character');
     }
   }
 
@@ -154,6 +172,38 @@ class AuthController extends Notifier<AuthState> {
 
   void togglePasswordVisibility() {
     state = state.copyWith(isPasswordVisible: !state.isPasswordVisible);
+  }
+
+  Future<bool> sendPasswordReset(String email) async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+    try {
+      await _loginUseCase.forgotPasswordBusiness(email);
+      state = state.copyWith(isLoading: false);
+      return true;
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString(),
+      );
+      if (kDebugMode) {
+        debugPrint("AuthController Error: $e");
+      }
+      return false;
+    }
+  }
+
+  Future<void> resendVerificationEmail() async {
+    state = state.copyWith(isLoading: true, errorMessage: null);
+    try {
+      await _loginUseCase.emailVerificationBusiness();
+      state = state.copyWith(isLoading: false);
+    } catch (e) {
+      state = state.copyWith(
+        isLoading: false,
+        errorMessage: e.toString(),
+      );
+      debugPrint("AuthController Error: $e");
+    }
   }
 }
 

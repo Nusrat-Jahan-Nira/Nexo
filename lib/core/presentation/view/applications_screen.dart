@@ -3,7 +3,7 @@ import '../../util/nexo_colors.dart';
 import '../custom_view/glass_container.dart';
 
 class ApplicationsScreen extends StatelessWidget {
-  const ApplicationsScreen({Key? key}) : super(key: key);
+  const ApplicationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -59,8 +59,8 @@ class ApplicationsScreen extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: isDark
-                    ? [Color(0xFF1A1A2E), Color(0xFF16213E)]
-                    : [Color(0xFFE8F3F9), Color(0xFFD1E5F0)],
+                    ? [const Color(0xFF1A1A2E), const Color(0xFF16213E)]
+                    : [const Color(0xFFE8F3F9), const Color(0xFFD1E5F0)],
               ),
             ),
           ),
@@ -74,7 +74,7 @@ class ApplicationsScreen extends StatelessWidget {
               width: size.height * 0.35,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.primaryLight.withOpacity(0.2),
+                color: NexoColors.primaryLight.withValues(alpha: 0.2),
               ),
             ),
           ),
@@ -87,7 +87,7 @@ class ApplicationsScreen extends StatelessWidget {
               width: size.height * 0.25,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.accentLight.withOpacity(0.15),
+                color: NexoColors.accentLight.withValues(alpha: 0.15),
               ),
             ),
           ),
@@ -98,8 +98,8 @@ class ApplicationsScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     'My Applications',
                     style: TextStyle(
@@ -112,7 +112,7 @@ class ApplicationsScreen extends StatelessWidget {
                 // Statistics cards
                 Container(
                   height: 100,
-                  padding: EdgeInsets.symmetric(horizontal: 16),
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
                   child: Row(
                     children: [
                       _buildStatCard(
@@ -121,14 +121,14 @@ class ApplicationsScreen extends StatelessWidget {
                         color: NexoColors.primaryLight,
                         isDark: isDark,
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       _buildStatCard(
                         count: '2',
                         label: 'In Review',
                         color: Colors.amber,
                         isDark: isDark,
                       ),
-                      SizedBox(width: 16),
+                      const SizedBox(width: 16),
                       _buildStatCard(
                         count: '1',
                         label: 'Interview',
@@ -139,13 +139,13 @@ class ApplicationsScreen extends StatelessWidget {
                   ),
                 ),
 
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
 
                 // Applications list
                 Expanded(
                   child: ListView.builder(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(16),
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.all(16),
                     itemCount: applications.length,
                     itemBuilder: (context, index) {
                       final application = applications[index];
@@ -169,7 +169,9 @@ class ApplicationsScreen extends StatelessWidget {
   }) {
     return Expanded(
       child: GlassContainer(
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.white.withOpacity(0.7),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : Colors.white.withValues(alpha: 0.7),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -181,10 +183,10 @@ class ApplicationsScreen extends StatelessWidget {
                 color: color,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 14,
               ),
             ),
@@ -196,9 +198,11 @@ class ApplicationsScreen extends StatelessWidget {
 
   Widget _buildApplicationCard(Map<String, dynamic> application, bool isDark) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16),
+      margin: const EdgeInsets.only(bottom: 16),
       child: GlassContainer(
-        color: isDark ? Colors.white.withOpacity(0.05) : Colors.white.withOpacity(0.6),
+        color: isDark
+            ? Colors.white.withValues(alpha: 0.05)
+            : Colors.white.withValues(alpha: 0.6),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -207,29 +211,30 @@ class ApplicationsScreen extends StatelessWidget {
                 Container(
                   height: 50,
                   width: 50,
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    color: isDark ? Colors.white.withOpacity(0.1) : Colors.white,
+                    color:
+                        isDark ? Colors.white.withValues(alpha: 0.1) : Colors.white,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  child: Icon(
+                  child: const Icon(
                     Icons.business,
                     color: NexoColors.primaryLight,
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         application['jobTitle'] ?? 'Job Title',
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(height: 4),
+                      const SizedBox(height: 4),
                       Text(
                         application['company'] ?? 'Company',
                         style: TextStyle(
@@ -242,15 +247,11 @@ class ApplicationsScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            SizedBox(height: 16),
-
+            const SizedBox(height: 16),
             Divider(
               color: isDark ? Colors.white30 : Colors.black12,
             ),
-
-            SizedBox(height: 16),
-
+            const SizedBox(height: 16),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -261,7 +262,7 @@ class ApplicationsScreen extends StatelessWidget {
                       size: 16,
                       color: isDark ? Colors.white54 : Colors.black45,
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(
                       'Applied: ${application['date']}',
                       style: TextStyle(
@@ -272,9 +273,11 @@ class ApplicationsScreen extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
-                    color: (application['statusColor'] as Color).withOpacity(0.1),
+                    color:
+                        (application['statusColor'] as Color).withValues(alpha: 0.1),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
@@ -288,38 +291,36 @@ class ApplicationsScreen extends StatelessWidget {
                 ),
               ],
             ),
-
-            SizedBox(height: 16),
-
+            const SizedBox(height: 16),
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton.icon(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                      side: BorderSide(color: NexoColors.primaryLight),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      side: const BorderSide(color: NexoColors.primaryLight),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    icon: Icon(Icons.visibility_outlined, size: 16),
-                    label: Text('View Details'),
+                    icon: const Icon(Icons.visibility_outlined, size: 16),
+                    label: const Text('View Details'),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                       backgroundColor: NexoColors.primaryLight,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
                     ),
-                    icon: Icon(Icons.send_outlined, size: 16),
-                    label: Text('Follow Up'),
+                    icon: const Icon(Icons.send_outlined, size: 16),
+                    label: const Text('Follow Up'),
                   ),
                 ),
               ],

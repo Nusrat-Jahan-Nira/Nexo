@@ -3,13 +3,13 @@ import '../../util/nexo_colors.dart';
 import '../custom_view/glass_container.dart';
 
 class CVScreen extends StatefulWidget {
-  const CVScreen({Key? key}) : super(key: key);
+  const CVScreen({super.key});
 
   @override
-  _CVScreenState createState() => _CVScreenState();
+  CVScreenState createState() => CVScreenState();
 }
 
-class _CVScreenState extends State<CVScreen> {
+class CVScreenState extends State<CVScreen> {
   int _selectedTemplate = 0;
 
   // Sample CV template data
@@ -18,19 +18,22 @@ class _CVScreenState extends State<CVScreen> {
       'name': 'Professional',
       'color': NexoColors.primaryLight,
       'thumbnail': 'assets/images/cv_template_1.png', // Placeholder
-      'description': 'Clean and professional template suitable for most industries',
+      'description':
+          'Clean and professional template suitable for most industries',
     },
     {
       'name': 'Creative',
       'color': Colors.orange,
       'thumbnail': 'assets/images/cv_template_2.png', // Placeholder
-      'description': 'Creative design perfect for roles in design, marketing, and arts',
+      'description':
+          'Creative design perfect for roles in design, marketing, and arts',
     },
     {
       'name': 'Modern',
       'color': Colors.teal,
       'thumbnail': 'assets/images/cv_template_3.png', // Placeholder
-      'description': 'Contemporary layout with a focus on skills and achievements',
+      'description':
+          'Contemporary layout with a focus on skills and achievements',
     },
     {
       'name': 'Simple',
@@ -55,8 +58,8 @@ class _CVScreenState extends State<CVScreen> {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: isDark
-                    ? [Color(0xFF1A1A2E), Color(0xFF16213E)]
-                    : [Color(0xFFE8F3F9), Color(0xFFD1E5F0)],
+                    ? [const Color(0xFF1A1A2E), const Color(0xFF16213E)]
+                    : [const Color(0xFFE8F3F9), const Color(0xFFD1E5F0)],
               ),
             ),
           ),
@@ -70,7 +73,7 @@ class _CVScreenState extends State<CVScreen> {
               width: size.height * 0.25,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.primaryLight.withOpacity(0.2),
+                color: NexoColors.primaryLight.withValues(alpha: 0.2),
               ),
             ),
           ),
@@ -83,7 +86,7 @@ class _CVScreenState extends State<CVScreen> {
               width: size.height * 0.3,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: NexoColors.accentLight.withOpacity(0.15),
+                color: NexoColors.accentLight.withValues(alpha: 0.15),
               ),
             ),
           ),
@@ -94,8 +97,8 @@ class _CVScreenState extends State<CVScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 // Header
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
+                const Padding(
+                  padding: EdgeInsets.all(16.0),
                   child: Text(
                     'CV Manager',
                     style: TextStyle(
@@ -108,8 +111,8 @@ class _CVScreenState extends State<CVScreen> {
                 // Content
                 Expanded(
                   child: SingleChildScrollView(
-                    physics: BouncingScrollPhysics(),
-                    padding: EdgeInsets.all(16),
+                    physics: const BouncingScrollPhysics(),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -119,9 +122,10 @@ class _CVScreenState extends State<CVScreen> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Text(
+                                  const Text(
                                     'My CV',
                                     style: TextStyle(
                                       fontSize: 18,
@@ -129,12 +133,14 @@ class _CVScreenState extends State<CVScreen> {
                                     ),
                                   ),
                                   Container(
-                                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 12, vertical: 6),
                                     decoration: BoxDecoration(
-                                      color: NexoColors.successLight.withOpacity(0.1),
+                                      color: NexoColors.successLight
+                                          .withValues(alpha: 0.1),
                                       borderRadius: BorderRadius.circular(30),
                                     ),
-                                    child: Text(
+                                    child: const Text(
                                       'Active',
                                       style: TextStyle(
                                         fontSize: 12,
@@ -146,49 +152,55 @@ class _CVScreenState extends State<CVScreen> {
                                 ],
                               ),
 
-                              SizedBox(height: 16),
+                              const SizedBox(height: 16),
 
                               // CV Preview
                               Container(
                                 height: 320,
                                 width: double.infinity,
                                 decoration: BoxDecoration(
-                                  color: isDark ? Colors.white.withOpacity(0.05) : Colors.white,
+                                  color: isDark
+                                      ? Colors.white.withValues(alpha: 0.05)
+                                      : Colors.white,
                                   borderRadius: BorderRadius.circular(12),
                                   border: Border.all(
-                                    color: isDark ? Colors.white24 : Colors.black12,
+                                    color: isDark
+                                        ? Colors.white24
+                                        : Colors.black12,
                                     width: 0.5,
                                   ),
                                 ),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Icon(
+                                    const Icon(
                                       Icons.description_outlined,
                                       size: 64,
                                       color: NexoColors.primaryLight,
                                     ),
-                                    SizedBox(height: 16),
-                                    Text(
+                                    const SizedBox(height: 16),
+                                    const Text(
                                       'John_Doe_Resume_2025.pdf',
                                       style: TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(height: 8),
+                                    const SizedBox(height: 8),
                                     Text(
                                       'Last updated: June 10, 2025',
                                       style: TextStyle(
                                         fontSize: 14,
-                                        color: isDark ? Colors.white70 : Colors.black54,
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Colors.black54,
                                       ),
                                     ),
                                   ],
                                 ),
                               ),
 
-                              SizedBox(height: 20),
+                              const SizedBox(height: 20),
 
                               // Action buttons
                               Row(
@@ -197,55 +209,65 @@ class _CVScreenState extends State<CVScreen> {
                                     child: OutlinedButton.icon(
                                       onPressed: () {},
                                       style: OutlinedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(vertical: 12),
-                                        side: BorderSide(color: NexoColors.primaryLight),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 12),
+                                        side: const BorderSide(
+                                            color: NexoColors.primaryLight),
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
-                                      icon: Icon(Icons.edit_outlined, size: 16),
-                                      label: Text('Edit CV'),
+                                      icon: const Icon(Icons.edit_outlined,
+                                          size: 16),
+                                      label: const Text('Edit CV'),
                                     ),
                                   ),
-                                  SizedBox(width: 12),
+                                  const SizedBox(width: 12),
                                   Expanded(
                                     child: ElevatedButton.icon(
                                       onPressed: () {},
                                       style: ElevatedButton.styleFrom(
-                                        padding: EdgeInsets.symmetric(vertical: 12),
-                                        backgroundColor: NexoColors.primaryLight,
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 12),
+                                        backgroundColor:
+                                            NexoColors.primaryLight,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.circular(12),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                         ),
                                       ),
-                                      icon: Icon(Icons.download_outlined, size: 16),
-                                      label: Text('Download'),
+                                      icon: const Icon(Icons.download_outlined,
+                                          size: 16),
+                                      label: const Text('Download'),
                                     ),
                                   ),
                                 ],
                               ),
 
-                              SizedBox(height: 12),
+                              const SizedBox(height: 12),
 
                               ElevatedButton.icon(
                                 onPressed: () {},
                                 style: ElevatedButton.styleFrom(
-                                  padding: EdgeInsets.symmetric(vertical: 12),
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 12),
                                   backgroundColor: Colors.transparent,
                                   foregroundColor: NexoColors.primaryLight,
                                   elevation: 0,
                                 ),
-                                icon: Icon(Icons.share_outlined, size: 16),
-                                label: Text('Share CV'),
+                                icon:
+                                    const Icon(Icons.share_outlined, size: 16),
+                                label: const Text('Share CV'),
                               ),
                             ],
                           ),
                         ),
 
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
 
                         // Template section header
-                        Text(
+                        const Text(
                           'Choose a Template',
                           style: TextStyle(
                             fontSize: 20,
@@ -253,7 +275,7 @@ class _CVScreenState extends State<CVScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
 
                         Text(
                           'Select a professional template for your CV',
@@ -263,13 +285,14 @@ class _CVScreenState extends State<CVScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 16),
+                        const SizedBox(height: 16),
 
                         // Templates grid
                         GridView.builder(
                           shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                          physics: const NeverScrollableScrollPhysics(),
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
                             crossAxisCount: 2,
                             crossAxisSpacing: 12,
                             mainAxisSpacing: 12,
@@ -288,15 +311,15 @@ class _CVScreenState extends State<CVScreen> {
                               },
                               child: GlassContainer(
                                 color: isDark
-                                    ? Colors.white.withOpacity(0.05)
-                                    : Colors.white.withOpacity(0.6),
+                                    ? Colors.white.withValues(alpha: 0.05)
+                                    : Colors.white.withValues(alpha: 0.6),
                                 borderRadius: 16,
-                                padding: EdgeInsets.all(12),
+                                padding: const EdgeInsets.all(12),
                                 border: isSelected
                                     ? Border.all(
-                                  color: template['color'],
-                                  width: 2,
-                                )
+                                        color: template['color'],
+                                        width: 2,
+                                      )
                                     : null,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,10 +328,13 @@ class _CVScreenState extends State<CVScreen> {
                                       child: Container(
                                         width: double.infinity,
                                         decoration: BoxDecoration(
-                                          color: template['color'].withOpacity(0.1),
-                                          borderRadius: BorderRadius.circular(12),
+                                          color: template['color']
+                                              .withValues(alpha: 0.1),
+                                          borderRadius:
+                                              BorderRadius.circular(12),
                                           border: Border.all(
-                                            color: template['color'].withOpacity(0.2),
+                                            color: template['color']
+                                                .withValues(alpha: 0.2),
                                             width: 1,
                                           ),
                                         ),
@@ -321,43 +347,42 @@ class _CVScreenState extends State<CVScreen> {
                                         ),
                                       ),
                                     ),
-
-                                    SizedBox(height: 12),
-
+                                    const SizedBox(height: 12),
                                     Text(
                                       template['name'],
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-
-                                    SizedBox(height: 4),
-
+                                    const SizedBox(height: 4),
                                     Text(
                                       template['description'],
                                       style: TextStyle(
                                         fontSize: 12,
-                                        color: isDark ? Colors.white70 : Colors.black54,
+                                        color: isDark
+                                            ? Colors.white70
+                                            : Colors.black54,
                                       ),
                                       maxLines: 2,
                                       overflow: TextOverflow.ellipsis,
                                     ),
-
-                                    SizedBox(height: 8),
-
+                                    const SizedBox(height: 8),
                                     if (isSelected)
                                       Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
                                         children: [
                                           Container(
-                                            padding: EdgeInsets.symmetric(
+                                            padding: const EdgeInsets.symmetric(
                                               horizontal: 10,
                                               vertical: 4,
                                             ),
                                             decoration: BoxDecoration(
-                                              color: template['color'].withOpacity(0.1),
-                                              borderRadius: BorderRadius.circular(30),
+                                              color: template['color']
+                                                  .withValues(alpha: 0.1),
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
                                             ),
                                             child: Row(
                                               mainAxisSize: MainAxisSize.min,
@@ -367,7 +392,7 @@ class _CVScreenState extends State<CVScreen> {
                                                   size: 16,
                                                   color: template['color'],
                                                 ),
-                                                SizedBox(width: 4),
+                                                const SizedBox(width: 4),
                                                 Text(
                                                   'Selected',
                                                   style: TextStyle(
@@ -388,23 +413,23 @@ class _CVScreenState extends State<CVScreen> {
                           },
                         ),
 
-                        SizedBox(height: 32),
+                        const SizedBox(height: 32),
 
                         // Action button
                         Container(
                           width: double.infinity,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(16),
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               colors: NexoColors.primaryGradient,
                               begin: Alignment.centerLeft,
                               end: Alignment.centerRight,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: NexoColors.primaryLight.withOpacity(0.4),
+                                color: NexoColors.primaryLight.withValues(alpha: 0.4),
                                 blurRadius: 12,
-                                offset: Offset(0, 4),
+                                offset: const Offset(0, 4),
                               ),
                             ],
                           ),
@@ -413,12 +438,12 @@ class _CVScreenState extends State<CVScreen> {
                             style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.transparent,
                               shadowColor: Colors.transparent,
-                              padding: EdgeInsets.symmetric(vertical: 16),
+                              padding: const EdgeInsets.symmetric(vertical: 16),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(16),
                               ),
                             ),
-                            child: Text(
+                            child: const Text(
                               'Create New CV',
                               style: TextStyle(
                                 fontSize: 16,
@@ -429,7 +454,7 @@ class _CVScreenState extends State<CVScreen> {
                           ),
                         ),
 
-                        SizedBox(height: 32),
+                        const SizedBox(height: 32),
                       ],
                     ),
                   ),

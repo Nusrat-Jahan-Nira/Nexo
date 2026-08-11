@@ -40,7 +40,7 @@ dependencies:
 #  //firebase_auth: ^4.7.3
   firebase_core: ^2.25.5
   firebase_auth: ^4.17.6
-  injectable: ^2.5.0
+  cloud_firestore: ^4.17.5
 
 dev_dependencies:
   flutter_test:

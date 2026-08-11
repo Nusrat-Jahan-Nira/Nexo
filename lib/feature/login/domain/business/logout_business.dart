@@ -1,4 +1,3 @@
-import 'package:injectable/injectable.dart';
 
 import '../repository/auth_repository.dart';
 

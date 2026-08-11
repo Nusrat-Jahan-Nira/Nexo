@@ -17,7 +17,7 @@ class GlassContainer extends StatelessWidget {
   final AlignmentGeometry? gradientEnd;
 
   const GlassContainer({
-    Key? key,
+    super.key,
     required this.child,
     this.borderRadius = 16.0,
     this.blur = 10.0,
@@ -31,7 +31,7 @@ class GlassContainer extends StatelessWidget {
     this.gradient,
     this.gradientBegin = Alignment.topLeft,
     this.gradientEnd = Alignment.bottomRight,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -50,20 +50,22 @@ class GlassContainer extends StatelessWidget {
           child: Container(
             padding: padding,
             decoration: BoxDecoration(
-              color: color.withOpacity(0.2),
+              color: color.withValues(alpha: 0.2),
               borderRadius: BorderRadius.circular(borderRadius),
-              border: border ?? Border.all(
-                color: Colors.white.withOpacity(0.2),
-                width: 1.5,
-              ),
-              gradient: gradient ?? LinearGradient(
-                begin: gradientBegin!,
-                end: gradientEnd!,
-                colors: [
-                  color.withOpacity(0.5),
-                  color.withOpacity(0.2),
-                ],
-              ),
+              border: border ??
+                  Border.all(
+                    color: Colors.white.withValues(alpha: 0.2),
+                    width: 1.5,
+                  ),
+              gradient: gradient ??
+                  LinearGradient(
+                    begin: gradientBegin!,
+                    end: gradientEnd!,
+                    colors: [
+                      color.withValues(alpha: 0.5),
+                      color.withValues(alpha: 0.2),
+                    ],
+                  ),
             ),
             child: child,
           ),

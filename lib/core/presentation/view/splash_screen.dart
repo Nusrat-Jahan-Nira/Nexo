@@ -5,13 +5,13 @@ import '../../../feature/login/presentation/view/login_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
 
-class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
   late Animation<double> _scaleAnimation;
@@ -28,14 +28,14 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 0.7, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.7, curve: Curves.easeInOut),
       ),
     );
 
     _scaleAnimation = Tween<double>(begin: 0.6, end: 1.0).animate(
       CurvedAnimation(
         parent: _controller,
-        curve: Interval(0.0, 0.7, curve: Curves.easeInOut),
+        curve: const Interval(0.0, 0.7, curve: Curves.easeInOut),
       ),
     );
 
@@ -69,8 +69,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: isDark
-                    ? [Color(0xFF1A1A2E), Color(0xFF16213E)]
-                    : [Color(0xFFE4EBFF), Color(0xFFCFDDFB)],
+                    ? [const Color(0xFF1A1A2E), const Color(0xFF16213E)]
+                    : [const Color(0xFFE4EBFF), const Color(0xFFCFDDFB)],
               ),
             ),
           ),
@@ -86,8 +86,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
                   colors: [
-                    NexoColors.primaryLight.withOpacity(0.3),
-                    NexoColors.accentLight.withOpacity(0.2),
+                    NexoColors.primaryLight.withValues(alpha: 0.3),
+                    NexoColors.accentLight.withValues(alpha: 0.2),
                   ],
                 ),
               ),
@@ -104,8 +104,8 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                 shape: BoxShape.circle,
                 gradient: LinearGradient(
                   colors: [
-                    NexoColors.accentLight.withOpacity(0.2),
-                    NexoColors.primaryLight.withOpacity(0.3),
+                    NexoColors.accentLight.withValues(alpha: 0.2),
+                    NexoColors.primaryLight.withValues(alpha: 0.3),
                   ],
                 ),
               ),
@@ -131,17 +131,17 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                           decoration: BoxDecoration(
                             shape: BoxShape.circle,
                             color: isDark
-                                ? Colors.white.withOpacity(0.1)
-                                : Colors.white.withOpacity(0.8),
+                                ? Colors.white.withValues(alpha: 0.1)
+                                : Colors.white.withValues(alpha: 0.8),
                             boxShadow: [
                               BoxShadow(
-                                color: NexoColors.primaryLight.withOpacity(0.3),
+                                color: NexoColors.primaryLight.withValues(alpha: 0.3),
                                 blurRadius: 20,
                                 spreadRadius: 5,
                               ),
                             ],
                           ),
-                          child: Center(
+                          child: const Center(
                             child: Icon(
                               Icons.work_outline,
                               size: 60,
@@ -150,7 +150,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                           ),
                         ),
 
-                        SizedBox(height: 32),
+                        const SizedBox(height: 32),
 
                         // App name
                         Text(
@@ -159,13 +159,13 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                             fontSize: 32,
                             fontWeight: FontWeight.bold,
                             background: Paint()
-                              ..shader = LinearGradient(
+                              ..shader = const LinearGradient(
                                 colors: NexoColors.primaryGradient,
-                              ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
+                              ).createShader(const Rect.fromLTWH(0, 0, 200, 70)),
                           ),
                         ),
 
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
 
                         Text(
                           'Find your dream career',
@@ -175,10 +175,10 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
                           ),
                         ),
 
-                        SizedBox(height: 48),
+                        const SizedBox(height: 48),
 
                         // Loading indicator
-                        CircularProgressIndicator(
+                        const CircularProgressIndicator(
                           valueColor: AlwaysStoppedAnimation<Color>(
                             NexoColors.primaryLight,
                           ),

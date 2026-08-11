@@ -7,12 +7,14 @@ class AuthState {
   final bool isAuthenticated;
   final String? errorMessage;
   final bool isPasswordVisible;
+  final bool isEmailVerified;
 
   const AuthState({
     this.isLoading = false,
     this.isAuthenticated = false,
     this.errorMessage,
     this.isPasswordVisible = true,
+    this.isEmailVerified = false,
   });
 
   AuthState copyWith({
@@ -20,12 +22,14 @@ class AuthState {
     bool? isAuthenticated,
     String? errorMessage,
     bool? isPasswordVisible,
+    bool? isEmailVerified,
   }) {
     return AuthState(
       isLoading: isLoading ?? this.isLoading,
       isAuthenticated: isAuthenticated ?? this.isAuthenticated,
       errorMessage: errorMessage ?? this.errorMessage,
       isPasswordVisible: isPasswordVisible ?? this.isPasswordVisible,
+      isEmailVerified: isEmailVerified ?? this.isEmailVerified,
     );
   }
 

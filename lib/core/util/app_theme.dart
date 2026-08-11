@@ -8,12 +8,12 @@ class AppTheme {
       brightness: Brightness.light,
       primaryColor: NexoColors.primaryLight,
       scaffoldBackgroundColor: NexoColors.backgroundLight,
-      colorScheme: ColorScheme.light(
+      colorScheme: const ColorScheme.light(
         primary: NexoColors.primaryLight,
         secondary: NexoColors.accentLight,
         error: NexoColors.errorLight,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -36,7 +36,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: Colors.white.withOpacity(0.8),
+        fillColor: Colors.white.withValues(alpha: 0.8),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
@@ -47,7 +47,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: NexoColors.accentLight, width: 2),
+          borderSide: const BorderSide(color: NexoColors.accentLight, width: 2),
         ),
         contentPadding: const EdgeInsets.all(16),
       ),
@@ -59,12 +59,12 @@ class AppTheme {
       brightness: Brightness.dark,
       primaryColor: NexoColors.primaryDark,
       scaffoldBackgroundColor: NexoColors.backgroundDark,
-      colorScheme: ColorScheme.dark(
+      colorScheme: const ColorScheme.dark(
         primary: NexoColors.primaryDark,
         secondary: NexoColors.accentDark,
         error: NexoColors.errorDark,
       ),
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         elevation: 0,
         centerTitle: true,
         backgroundColor: Colors.transparent,
@@ -87,7 +87,7 @@ class AppTheme {
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: NexoColors.cardDark.withOpacity(0.5),
+        fillColor: NexoColors.cardDark.withValues(alpha: 0.5),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
           borderSide: BorderSide.none,
@@ -98,7 +98,7 @@ class AppTheme {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(color: NexoColors.accentDark, width: 2),
+          borderSide: const BorderSide(color: NexoColors.accentDark, width: 2),
         ),
         contentPadding: const EdgeInsets.all(16),
       ),
